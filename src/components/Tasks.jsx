@@ -8,7 +8,7 @@ export default function Taks({ datalist, del }) {
       title={item.title}
       date={item.date}
       reminder={item.reminder}
-      deleteaction={del}
+      deleteaction={() => del(item.id)}
     />
   ));
 }

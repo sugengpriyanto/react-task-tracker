@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function AddTask({ action }) {
+export default function AddTask({ action, change, title, date }) {
   return (
     <form onSubmit={action} className="p-2 ">
       <div className="form-group mb">
@@ -13,6 +13,8 @@ export default function AddTask({ action }) {
               type="text"
               placeholder="ex. : Sleep Routine"
               className="form-control"
+              onChange={change}
+              value={title}
             />
           </div>
         </div>
@@ -25,7 +27,7 @@ export default function AddTask({ action }) {
           </div>
         </div>
         <div className="form-check">
-          <input type="checkbox" className="form-check-input" />
+          <input type="checkbox" className="form-check-input" value={date} />
           <label>Set Reminder</label>
         </div>
       </div>

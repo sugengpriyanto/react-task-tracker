@@ -24,6 +24,8 @@ const data = [
 export default function App() {
   const [tasklist, setTasklist] = useState(data);
   const [toggle, setToggle] = useState(true);
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -32,11 +34,25 @@ export default function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setToggle(!toggle);
+
+    let newTask = {
+      title: title,
+      date: date
+    }
+
+    tasklist.unshift(newTask)
+    setTasklist(tasklist)
   };
 
   const handleDelete = (id) => {
-    data.filter((item) => item.id !== id);
+    console.log(id)
+    data.filter(item => item.id !== id)
+    setTasklist(data)
   };
+
+  const handleChange = (e) => {
+    setTitle(e.target.value)
+  }
 
   return (
     <div className="border m-1 border-success border-2">
@@ -46,9 +62,9 @@ export default function App() {
         text={toggle ? 'Add' : 'Close'}
         color={toggle ? 'btn btn-warning' : 'btn btn-danger'}
       />
-      {!toggle && <AddTask action={handleSubmit} />}
+      {!toggle && <AddTask date={date} title={title} change={handleChange} action={handleSubmit} />}
       {tasklist.length > 0 ? (
-        <Tasks datalist={tasklist} />
+        <Tasks datalist={tasklist} del={handleDelete} />
       ) : (
         'No task to display'
       )}

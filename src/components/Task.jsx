@@ -42,7 +42,7 @@ Alarm.defaultProps = {
 };
 
 const Delete = ({action}) => {
-  return <button className="btn btn-danger">
+  return <button className="btn btn-danger" onClick={action}>
     <i className="fa fa-trash"></i>
   </button>
 }
